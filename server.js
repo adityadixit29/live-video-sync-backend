@@ -50,6 +50,20 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(uploadsDir));
 
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Video Player Backend API is running',
+    version: '1.0.0',
+    endpoints: {
+      test: '/',
+      createSession: '/api/create-session',
+      getSession: '/api/session/:unique_id',
+      joinSession: '/api/join-session/:unique_id',
+      uploadVideo: '/api/upload-video/:unique_id'
+    }
+  });
+});
 // Routes
 app.use('/api', sessionRoutes);
 
